@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Glacier.CLI/Glacier.CLI.csproj" />
+  <Project Path="Glacier.Core/Glacier.Core.csproj" />
+</Solution>
