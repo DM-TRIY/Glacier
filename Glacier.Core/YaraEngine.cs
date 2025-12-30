@@ -16,7 +16,6 @@ public class YaraEngine : IDisposable
 
         using var compiler = new Compiler();
 
-        // Загружаем ВСЕ .yar из embedded ресурсов
         var assembly = Assembly.GetExecutingAssembly();
         var resourceNames = assembly.GetManifestResourceNames()
             .Where(n => n.EndsWith(".yar", StringComparison.OrdinalIgnoreCase));

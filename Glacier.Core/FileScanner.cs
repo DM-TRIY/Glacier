@@ -17,6 +17,15 @@ public class FileScanner
     }
 
 
+    public ScanResult ScanFile(string filePath)
+    {
+        if (!File.Exists(filePath))
+            throw new FileNotFoundException("File not found", filePath);
+
+        return AnalyzeFile(filePath);
+    }
+
+
     private void ScanRecursive(string currentPath, List<ScanResult> results)
     {
         foreach (var file in Directory.EnumerateFiles(currentPath))
@@ -60,7 +69,6 @@ public class FileScanner
 
         int score = 0;
 
-        // Простая "эвристика" — не тупая, но минимальная
         if (result.Extension is ".exe" or ".dll" or ".bat" or ".cmd" or ".ps1")
         {
             score += 50;
@@ -96,7 +104,7 @@ public class FileScanner
 
                 if (matches.Count > 0)
                 {
-                    score += 100; // буст вейта
+                    score += 100;
                     result.Reasons.Add("YARA signature match");
                 }
             }
